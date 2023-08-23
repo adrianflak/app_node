@@ -23,5 +23,18 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: [build]
+    steps:
+    - name: Krok 1
+      uses: actions/checkout@v3
+    - name: Krok 2
+      uses: azure/appservice-build@v3
+      with:
+        platform: nodejs
+        version: 18.17.0
+    - name: Wdrożenia aplikacji na Azure App Service
+      uses: azure/webapps-deploy@v1
+      with:
+        app-name: nodejsfrontend1
+        publish-profile: $${{secrets.AZURE_WEB_APP_PUBLISH_PROFILE}}
 
       
