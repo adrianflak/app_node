@@ -1,0 +1,24 @@
+name: Main
+on:
+  push: 
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Krok 1 - pobranie kodu
+      uses: actions/checkout@v3
+    - name: Krok 2 - podpięcie Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: "18.x"
+
+    - name: Instalacja dependencji
+      run: npm install
+    - name: Uruchomienie testów
+      run: npm test
+
+      
